@@ -1,3 +1,5 @@
+const popup = document.getElementById("popup");
+
 let nivel = 1;
 let vidas = 1;
 let preguntaActual = 0;
@@ -10,12 +12,13 @@ let botonesOpciones = [
   document.getElementById("opcion2"),
   document.getElementById("opcion3"),
   document.getElementById("opcion4")
+
 ]
 let preguntas = [
   {
     pregunta: "¿Cual es el verdadero nombre del Duende Verde?",
     opciones: ["Otto Octavius", "Norman Osborn", "Eddie Brock", "Harry Osborn"],
-    correcta: "Curt Connors"
+    correcta: "Norman Osborn"
   },
   {
     pregunta: "¿Cual era el nombre del cientifico que creo un suero el cual lo transformo en lagarto?",
@@ -35,6 +38,7 @@ let preguntas = [
 ]
 
 function comenzarJuego() {
+  popup.close()
   //document.getElementById("inicio").style.display = "none";
   //document.getElementById("juego").style.display = "block";
   pregunta.innerHTML = preguntas[0].pregunta;
@@ -54,10 +58,35 @@ function comenzarJuego() {
 function ComprobarRespuestas(botonElegido) {
   console.log(botonElegido.textContent) // Tenemos un texto con la respuesta que eligio el usuario. falta implementar un if que lo compare con 
   // la respuesta correcta de la pregunta actual preguntas[numeroPreguntaActual].correcta
-  let respuestaJugador = document.getElementById("respuesta").value;
-  let respuestaCorrecta = preguntas
+  let respuestaJugador = botonElegido.textContent;
+  let respuestaCorrecta = preguntas[0].correcta;
+  if (respuestaJugador == respuestaCorrecta) {
+    mostrarRespuesta(true)
+  } else {
+    mostrarRespuesta(false)
+  } 
 }
 
 
 
 comenzarJuego()
+
+function mostrarRespuesta(es_correcto) {
+  console.log(es_correcto);
+  if(es_correcto) {
+    popup.showModal();
+    popup.innerHTML = 
+    `<h4>Correcto</h4> 
+     <button>Siguiente Nivel</button>`
+  } else {
+    popup.showModal();
+    popup.innerHTML = 
+    `<h4>Incorrecto</h4>
+    <button id="volverIntentar">Intentar de nuevo</button>`
+
+  }
+
+  document.getElementById("volverIntentar").addEventListener("click", comenzarJuego)
+  
+}
+
