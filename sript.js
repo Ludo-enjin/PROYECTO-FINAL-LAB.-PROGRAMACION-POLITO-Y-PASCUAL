@@ -47,7 +47,7 @@ function comenzarJuego() {
   opcion3.innerHTML = preguntas[0].opciones[2];
   opcion4.innerHTML = preguntas[0].opciones[3];
 
-  
+
   botonesOpciones.forEach((boton) => {
     boton.addEventListener("click", () => {
       ComprobarRespuestas(boton)
@@ -55,16 +55,56 @@ function comenzarJuego() {
   })
 }
 
+function siguinteNivel() {
+  preguntaActual = 0;
+  preguntas = [
+    {
+    pregunta: "¿?",
+    opciones: ["", "", "", ""],
+    correcta: ""
+  },
+  {
+    pregunta: "¿?",
+    opciones: ["", "", "", ""],
+    correcta: ""
+  },
+  {
+    pregunta: "¿?",
+    opciones: ["", "", "", ""],
+    correcta: ""
+  },
+  {
+    pregunta: "¿?",
+    opciones: ["", "", "", ""],
+    correcta: ""
+  },
+
+  ]
+}
+
+function siguientePregunta() {
+  pregunta.innerHTML = preguntas[preguntaActual].pregunta;
+  document.getElementById("popup").close();
+  opcion1.innerHTML = preguntas[preguntaActual].opciones[0];
+  opcion2.innerHTML = preguntas[preguntaActual].opciones[1];
+  opcion3.innerHTML = preguntas[preguntaActual].opciones[2];
+  opcion4.innerHTML = preguntas[preguntaActual].opciones[3];
+}
+
+
 function ComprobarRespuestas(botonElegido) {
   console.log(botonElegido.textContent) // Tenemos un texto con la respuesta que eligio el usuario. falta implementar un if que lo compare con 
   // la respuesta correcta de la pregunta actual preguntas[numeroPreguntaActual].correcta
   let respuestaJugador = botonElegido.textContent;
-  let respuestaCorrecta = preguntas[0].correcta;
+  let respuestaCorrecta = preguntas[preguntaActual].correcta;
   if (respuestaJugador == respuestaCorrecta) {
     mostrarRespuesta(true)
-  } else {
+    preguntaActual += 1;
+  }
+  else {
     mostrarRespuesta(false)
-  } 
+    preguntaActual = 0;
+  }
 }
 
 
@@ -73,20 +113,23 @@ comenzarJuego()
 
 function mostrarRespuesta(es_correcto) {
   console.log(es_correcto);
-  if(es_correcto) {
+  if (es_correcto) {
     popup.showModal();
-    popup.innerHTML = 
-    `<h4>Correcto</h4> 
-     <button>Siguiente Nivel</button>`
+    popup.innerHTML =
+      `<h4>Correcto</h4> 
+     <button id="BotonSiguientePregunta">Siguiente Pregunta</button>`;
+    document.getElementById("BotonSiguientePregunta").addEventListener("click", siguientePregunta);
+   
+
   } else {
     popup.showModal();
-    popup.innerHTML = 
-    `<h4>Incorrecto</h4>
+    popup.innerHTML =
+      `<h4>Incorrecto</h4>
     <button id="volverIntentar">Intentar de nuevo</button>`
+
+    document.getElementById("volverIntentar").addEventListener("click", comenzarJuego)
 
   }
 
-  document.getElementById("volverIntentar").addEventListener("click", comenzarJuego)
-  
 }
 
