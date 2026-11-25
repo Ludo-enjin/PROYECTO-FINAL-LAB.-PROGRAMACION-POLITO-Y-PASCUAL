@@ -59,24 +59,24 @@ function siguinteNivel() {
   preguntaActual = 0;
   preguntas = [
     {
-    pregunta: "¿?",
-    opciones: ["", "", "", ""],
-    correcta: ""
+    pregunta: "¿Cómo se llama el mejor amigo de Peter Parker en muchas versiones?",
+    opciones: ["Eddie Brock", "Flash Thompson", "Harry Osborn", "Ned Leeds"],
+    correcta: "Harry Osborn"
   },
   {
-    pregunta: "¿?",
-    opciones: ["", "", "", ""],
-    correcta: ""
+    pregunta: "¿Qué villano no tiene un disfraz o un traje?",
+    opciones: ["Electro", "Sandman", "Mysterio", "Rhino"],
+    correcta: "Sandman"
   },
   {
-    pregunta: "¿?",
-    opciones: ["", "", "", ""],
-    correcta: ""
+    pregunta: "¿Qué poder especial tiene Miles Morales que Peter Parker normalmente no tiene?",
+    opciones: ["Invisibilidad y descarga eléctrica", "Control del fuego", "Súper velocidad", "Teletransportación"],
+    correcta: "Invisibilidad y descarga eléctrica"
   },
   {
-    pregunta: "¿?",
-    opciones: ["", "", "", ""],
-    correcta: ""
+    pregunta: "¿Cómo se llama el villano conocido como el Buitre?",
+    opciones: ["Quentin Beck", "Wilson Fisk", "Aleksei Sytsevich", "Adrian Toomes"],
+    correcta: "Adrian Toomes"
   },
 
   ]
@@ -132,4 +132,3 @@ function mostrarRespuesta(es_correcto) {
   }
 
 }
-
