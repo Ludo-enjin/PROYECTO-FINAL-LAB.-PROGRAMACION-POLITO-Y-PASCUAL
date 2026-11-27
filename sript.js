@@ -1,4 +1,5 @@
 const popup = document.getElementById("popup");
+const boton = document.getElementById("BotonSiguienteNivel");
 
 let nivel = 1;
 let vidas = 1;
@@ -46,18 +47,11 @@ function comenzarJuego() {
   opcion2.innerHTML = preguntas[0].opciones[1];
   opcion3.innerHTML = preguntas[0].opciones[2];
   opcion4.innerHTML = preguntas[0].opciones[3];
-
-
-  botonesOpciones.forEach((boton) => {
-    boton.addEventListener("click", () => {
-      ComprobarRespuestas(boton)
-    })
-  })
 }
 
 function siguinteNivel() {
   preguntaActual = 0;
-  preguntas = [
+  preguntas2 = [
     {
     pregunta: "¿Cómo se llama el mejor amigo de Peter Parker en muchas versiones?",
     opciones: ["Eddie Brock", "Flash Thompson", "Harry Osborn", "Ned Leeds"],
@@ -80,7 +74,21 @@ function siguinteNivel() {
   },
 
   ]
+
+  function ComenzarNivel2() {
+  popup.close()
+  boton.addEventListener("click", () => {
+    window.location.href = "Nivel2.html";
+  //document.getElementById("inicio").style.display = "none";
+  //document.getElementById("juego").style.display = "block";
+  pregunta.innerHTML = preguntas2[0].pregunta;
+  opcion1.innerHTML = preguntas2[0].opciones[4];
+  opcion2.innerHTML = preguntas2[0].opciones[5];
+  opcion3.innerHTML = preguntas2[0].opciones[6];
+  opcion4.innerHTML = preguntas2[0].opciones[7];
+
 }
+  }
 
 function siguientePregunta() {
   pregunta.innerHTML = preguntas[preguntaActual].pregunta;
@@ -104,6 +112,7 @@ function ComprobarRespuestas(botonElegido) {
   else {
     mostrarRespuesta(false)
     preguntaActual = 0;
+    correcta = 0;
   }
 }
 
@@ -127,8 +136,21 @@ function mostrarRespuesta(es_correcto) {
       `<h4>Incorrecto</h4>
     <button id="volverIntentar">Intentar de nuevo</button>`
 
-    document.getElementById("volverIntentar").addEventListener("click", comenzarJuego)
+    document.getElementById("volverIntentar").addEventListener("click", comenzarJuego);
 
   }
 
+   if(preguntaActual == 4){
+      `<h4>Correcto</h4> 
+     <button id="BotonSiguienteNivel">Siguiente Nivel</button>`;
+  }
+
 }
+
+botonesOpciones.forEach((boton) => {
+  boton.addEventListener("click", () => {
+    ComprobarRespuestas(boton)
+  })
+});
+
+document.getElementById("BotonSiguienteNivel").addEventListener("click", ComenzarNivel2);
